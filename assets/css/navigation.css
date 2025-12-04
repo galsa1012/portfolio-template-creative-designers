@@ -25,6 +25,7 @@
 	font-weight: var(--fw-bold);
 }
 
+
 .nav-links {
 	display: flex;
 	gap: var(--space-lg);

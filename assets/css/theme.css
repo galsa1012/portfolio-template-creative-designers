@@ -49,10 +49,8 @@
 	 * These font stacks prioritize system fonts for performance and
 	 * consistency, with fallbacks to popular web-safe fonts.
 	 */
-  --font-sans: "Noto Sans", sans-serif;
-  --font-mono: "Ubuntu Mono", monospace;
-  --font-serif: "EB Garamond", serif;
-
+  --font-sans: 'Cabin', sans-serif;
+  --font-sans-title: 'Limelight', sans-serif;
   /*
 	 * FONT WEIGHT TOKENS
 	 *
