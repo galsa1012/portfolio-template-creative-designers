@@ -21,21 +21,45 @@
 /* --------------------------------------------------------------------------
    5. Hero Section
    -------------------------------------------------------------------------- */
-.hero {
-  position: relative;
-  min-height: 100vh;
+.hero-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+  align-items: center; /* Centra verticalmente la ilustración y el texto */
+  justify-content: space-between;
+  gap: 50px; /* Espacio entre la imagen y el texto */
+  min-height: 80vh; /* Altura de la sección */
+  padding-top: 80px;
+  background-color: var(--color-bg);
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #2c2c2c 0%, #161616 50%, #080808 100%);
-  z-index: -1;
+/* El contenedor de la ilustración ocupa el 50% */
+.hero-illustration {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-illustration svg {
+  width: 100%;
+  max-width: 500px; /* Ajusta según el tamaño de tu dibujo */
+  height: auto;
+}
+
+/* El contenido de texto ocupa el otro 50% */
+.hero-content {
+  flex: 1;
+  text-align: left; /* Alineado a la derecha del layout, pero texto a la izquierda */
+}
+
+/* Responsivo: En móviles, la imagen arriba y el texto abajo */
+@media (max-width: 768px) {
+  .hero-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -128,9 +152,13 @@
   margin-bottom: var(--space-sm);
   letter-spacing: -0.02em;
   font-family: var(--font-sans-title);
+  line-height: 1.1; /* Para que no queden muy separados */
 }
-
-.hero-subtitle {
+.apellidos {
+  display: inline-block; /* Para que se comporte como un bloque unido */
+  white-space: nowrap; /* ¡ESTO evita que los apellidos se separen! */
+}
+.nombre .hero-subtitle {
   font-size: var(--text-xl);
   color: var(--color-text-muted);
   margin-bottom: var(--space-lg);

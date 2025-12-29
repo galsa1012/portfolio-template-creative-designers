@@ -71,7 +71,7 @@
 	 * Scale ratio: ~1.125 (Major Second) — subtle but professional
 	 * Each step is roughly 12.5% larger than the previous
 	 */
-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem); /* 12px → 14px */
+  --text-xs: clamp(0.65rem, 0.6rem + 0.25vw, 0.875rem); /* 12px → 14px */
   --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem); /* 14px → 16px */
   --text-base: clamp(
     1rem,

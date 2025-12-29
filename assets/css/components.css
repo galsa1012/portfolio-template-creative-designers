@@ -14,6 +14,7 @@
 .btn:hover,
 .btn:focus {
   background: var(--color-accent-hover);
+  color: var(--color-accent);
   transform: translateY(-2px);
 }
 
@@ -21,12 +22,13 @@
    7. About Section
    -------------------------------------------------------------------------- */
 .about {
-  background: var(--color-bg-alt);
+  background: var(--color-bg);
 }
 
 .about-grid {
   display: grid;
   gap: var(--space-xl);
+  margin-top: 200px;
 }
 
 @media (min-width: 768px) {
@@ -43,8 +45,16 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
+  /* Esto crea 5 columnas en pantallas grandes */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* En móviles o tablets, haremos que se adapten */
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }
 
 .skill-card {
@@ -61,8 +71,13 @@
 }
 
 .skill-card h3 {
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-sm);
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  white-space: nowrap; /* Fuerza una sola línea */
+  overflow: hidden; /* Oculta si algo sobra (seguridad) */
+  text-overflow: ellipsis; /* Pone "..." si el nombre fuera larguísimo */
+
+  margin-bottom: auto;
+  padding-bottom: var(--space-sm);
 }
 
 .skill-bar {
@@ -179,17 +194,48 @@
 .social-links {
   display: flex;
   justify-content: center;
-  gap: var(--space-lg);
-  margin-top: var(--space-lg);
+  gap: 30px;
+  margin-top: 30px;
 }
 
 .social-links a {
-  color: var(--color-text-muted);
-  transition: color 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
 }
 
-.social-links a:hover {
+.social-links svg {
+  width: 30px;
+  height: 30px;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+/* El nombre que aparece */
+.tooltip {
+  position: absolute;
+  bottom: -25px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--color-accent);
+  opacity: 0; /* Invisible */
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Animación combinada */
+.social-links a:hover svg {
+  color: var(--color-accent);
+  transform: translateY(-5px);
+}
+
+.social-links a:hover .tooltip {
+  opacity: 1;
+  bottom: -18px; /* Sube un poco para quedar cerca del icono */
 }
 
 /* --------------------------------------------------------------------------
