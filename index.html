@@ -22,12 +22,23 @@
     <!-- Navigation -->
     <nav class="nav">
       <div class="nav-container">
-        <a href="#" class="nav-logo">Portfolio</a>
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#projects">Diseño Gráfico</a></li>
-          <li><a href="#projects">Proyectos destacados</a></li>
+          <li><a href="#projects">Featured projects</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-trigger">Categorias</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="diseño-grafico.html#diseño-grafico">Diseño Gráfico</a>
+              </li>
+              <li><a href="#diseno-editorial">Diseño Editorial</a></li>
+              <li><a href="#ilustracion">Ilustración</a></li>
+              <li><a href="#comics">Comics</a></li>
+              <li><a href="#productos">Productos</a></li>
+            </ul>
+          </li>
+
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -50,9 +61,6 @@
             <p class="hero-subtitle animate-on-scroll">
               Front-End Engineer & UI Designer
             </p>
-            <a href="#projects" class="btn animate-on-scroll"
-              >Featured proyects</a
-            >
           </div>
         </div>
       </section>
@@ -147,12 +155,12 @@
           </div>
         </div>
       </section>
-      ```
 
       <!-- Projects Section -->
       <section id="projects" class="section projects">
         <div class="container">
           <h2 class="section-title animate-on-scroll">Featured Projects</h2>
+
           <div class="projects-grid" data-reveal-stagger>
             <article class="project-card">
               <div class="project-image">
@@ -164,27 +172,40 @@
               </div>
               <div class="project-content">
                 <h3>E-commerce Platform</h3>
-                <p>
-                  A fully responsive online store with cart functionality and
-                  payment integration.
-                </p>
+                <div class="project-description">
+                  <p>
+                    A fully responsive online store with cart functionality and
+                    payment integration. This project focused on user experience
+                    and conversion optimization. Developed using modern CSS
+                    techniques to ensure high performance across all mobile and
+                    desktop devices.
+                  </p>
+                </div>
               </div>
             </article>
+
             <article class="project-card">
               <div class="project-image">
                 <img
                   src="https://picsum.photos/400/300?random=2"
-                  alt="Dashboard UI"
+                  alt="Analytics Dashboard"
                   loading="lazy"
                 />
               </div>
               <div class="project-content">
                 <h3>Analytics Dashboard</h3>
-                <p>
-                  Real-time data visualization dashboard with dark mode support.
-                </p>
+                <div class="project-description">
+                  <p>
+                    Real-time data visualization dashboard with dark mode
+                    support. The challenge was to display complex data sets in a
+                    clean, understandable way for the end user. Includes custom
+                    charts, filtering systems, and a fully modular component
+                    architecture.
+                  </p>
+                </div>
               </div>
             </article>
+
             <article class="project-card">
               <div class="project-image">
                 <img
@@ -195,7 +216,15 @@
               </div>
               <div class="project-content">
                 <h3>App Landing Page</h3>
-                <p>Conversion-optimized landing page with scroll animations.</p>
+                <div class="project-description">
+                  <p>
+                    Conversion-optimized landing page with scroll animations.
+                    Built to showcase a new mobile application, focusing on
+                    high-quality imagery and clear calls to action. Every
+                    element is designed to guide the user towards the download
+                    button.
+                  </p>
+                </div>
               </div>
             </article>
           </div>
