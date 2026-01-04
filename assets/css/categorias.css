@@ -14,8 +14,7 @@ body {
   background-color: #000;
   color: #fff;
   font-family: "Cabin", sans-serif;
-  /* Bloqueamos el scroll vertical nativo para que el JS controle la rueda */
-  overflow: hidden;
+  overflow: hidden; /* El JS controla el scroll */
 }
 
 /* ==========================================================================
@@ -25,7 +24,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 200px; /* Ancho de la barra lateral */
+  width: 200px;
   height: 100vh;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
@@ -46,18 +45,15 @@ body {
 .nav-links-vertical {
   list-style: none;
 }
-
 .nav-links-vertical li {
   margin-bottom: 20px;
 }
-
 .nav-links-vertical a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
-
 .nav-links-vertical a:hover {
   color: #ff4d4d;
 }
@@ -66,158 +62,172 @@ body {
    3. CONTENEDOR HORIZONTAL (EL MOTOR)
    ========================================================================== */
 #horizontal-wrapper {
-  display: flex; /* Alinea secciones en fila */
-  flex-direction: row; /* Dirección horizontal obligatoria */
-  flex-wrap: nowrap; /* PROHIBE que las secciones bajen de línea */
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   width: 100vw;
   height: 100vh;
-
-  /* El contenido empieza después de la navegación fija */
-  padding-left: 250px;
-
-  /* Permitimos el desbordamiento horizontal para que exista el scroll */
-  overflow-x: scroll;
+  padding-left: 200px; /* Ajustado al ancho del nav */
+  overflow-x: hidden; /* El JS mueve el scroll */
   overflow-y: hidden;
-
-  /* Suavizado de scroll */
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
   position: relative;
   z-index: 5;
-  /* Mejora el rendimiento en móviles */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Ocultar barra de scroll para estética limpia */
-#horizontal-wrapper::-webkit-scrollbar {
-  display: none;
 }
 
 /* ==========================================================================
-   4. SECCIONES (CADA CATEGORÍA)
+   4. SECCIONES Y GRID DE 2 FILAS
    ========================================================================== */
 .category-section {
-  /* Cada sección ocupa exactamente el ancho total de la pantalla */
-  flex: 0 0 100vw;
+  flex: 0 0 auto; /* Permite que la sección crezca según sus tarjetas */
   min-width: 100vw;
   height: 100vh;
-
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column; /* Alinea el título y luego el grid */
+  justify-content: center; /* ESTO centra las filas verticalmente en la pantalla */
   padding: 0 80px;
 }
 
-.category-content h1 {
-  font-family: "Limelight", cursive;
-  font-size: clamp(3rem, 8vw, 6rem); /* Tamaño fluido según pantalla */
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.category-content p {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.6);
-  max-width: 500px;
-  line-height: 1.6;
-}
-/* --------------------------------------------------------------------------
-   8. Projects Section
-   -------------------------------------------------------------------------- */
-/* ==========================================================================
-   SECCIÓN DE PROYECTOS COMPLETA
-   ========================================================================== */
-
-/* 1. CONTENEDOR GRID (Mantiene las 3 tarjetas en horizontal) */
 .projects-grid {
   display: grid !important;
-  gap: 30px; /* Espacio entre tarjetas */
-  grid-template-columns: repeat(1, 1fr); /* Móvil */
-  width: 100%;
+  gap: 30px;
+
+  /* Ajustamos el alto de las dos filas para que quepan bien */
+  /* Si pones 400px aquí, cada fila medirá eso de alto */
+  grid-template-rows: repeat(2, 400px);
+
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  width: max-content;
   padding-top: 50px;
 }
 
-@media (min-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important; /* Tablet */
-  }
-}
-
-@media (min-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(
-      3,
-      1fr
-    ) !important; /* Escritorio: 3 en línea */
-  }
-}
-
-/* 2. LA TARJETA (Diseño base) */
+/* ==========================================================================
+   5. LA TARJETA (Tus estilos originales mantenidos)
+   ========================================================================== */
 .project-card {
   position: relative !important;
-  width: 100%;
-  aspect-ratio: 4/3;
+  width: 200px; /* Menos ancho para que sea más estilizada */
+  height: 100%; /* Toma el alto de la fila (400px) */
   background: #000;
   border-radius: 8px;
   overflow: hidden !important;
   transition: transform 0.3s ease;
   cursor: pointer;
+
+  /* Si prefieres usar proporciones, usa esto en vez de width: */
+  /* aspect-ratio: 3/4; */
+}
+/* Tarjeta que ocupa dos columnas de ancho pero sigue siendo alta */
+.card-large {
+  width: 600px;
 }
 
+.card-wide {
+  width: 800px;
+}
+/* Tarjeta que ocupa dos columnas de ancho pero sigue siendo alta */
+.card-large {
+  width: 600px;
+}
+
+/* Tarjeta que ocupa las dos filas (arriba y abajo) */
+.card-tall {
+  width: 300px;
+  grid-row: span 2;
+}
 .project-card:hover {
   transform: translateY(-8px);
 }
 
-/* 3. LA IMAGEN Y EL BLUR (Desenfoque sutil) */
-.project-image {
+/* 6. CARRUSEL DENTRO DE TARJETA */
+.carrusel-container {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   z-index: 1;
 }
 
-.project-image img {
+.carrusel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.carrusel-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.carrusel-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: filter 0.5s ease, transform 0.5s ease;
 }
 
-/* Efecto al hacer hover: desenfoque suave */
-.project-card:hover .project-image img {
+.project-card:hover .carrusel-slide img {
   filter: blur(2px);
   transform: scale(1.05);
 }
 
-/* 4. EL CONTENIDO (Mitad inferior, título izquierda y scroll) */
+/* 7. BOTONES CARRUSEL (Sin recuadro) */
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.carrusel-card:hover .carrusel-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.carrusel-btn:hover {
+  color: #ac0707;
+  transform: translateY(-50%) scale(1.2);
+}
+.prev {
+  left: 15px;
+}
+.next {
+  right: 15px;
+}
+
+/* 8. CONTENIDO Y TEXTO CON SCROLL */
 .project-content {
   position: absolute;
-  /* Posicionado solo en la mitad inferior */
   top: 50%;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
-
-  /* Degradado para legibilidad */
+  z-index: 15;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.95) 40%,
     transparent
   ) !important;
-
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Empieza arriba de la mitad inferior */
-  align-items: flex-start; /* Todo alineado a la izquierda */
+  justify-content: flex-end;
   padding: 20px 25px;
-
-  /* Oculto por defecto */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s ease;
   transform: translateY(10px);
+  pointer-events: none;
 }
 
 .project-card:hover .project-content {
@@ -226,49 +236,45 @@ body {
   transform: translateY(0);
 }
 
-/* 5. TEXTOS (Pequeños y con SCROLL FORZADO) */
 .project-content h3 {
-  color: var(--color-accent);
+  color: #ac0707;
   margin: 0 0 8px 0;
   font-size: 1.5rem;
   font-weight: 600;
-  flex-shrink: 0; /* Que el título no se mueva */
+  pointer-events: auto;
 }
 
 .project-description {
   width: 100%;
-  /* ALTURA FIJA PARA QUE EL SCROLL FUNCIONE SÍ O SÍ */
   height: 80px;
-  overflow-y: auto !important; /* Activa el scroll vertical */
-
-  margin-bottom: 10px;
+  overflow-y: auto !important;
+  overscroll-behavior: contain; /* Evita mover el wrapper horizontal */
+  pointer-events: auto;
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
   line-height: 1.4;
   padding-right: 10px;
 }
 
-/* Estilo de la barra de scroll (Color Accent) */
+/* Scrollbar personalizada para el texto */
 .project-description::-webkit-scrollbar {
   width: 4px;
 }
 .project-description::-webkit-scrollbar-thumb {
-  background: var(--color-accent); /* Color de tu marca */
+  background: #ac0707;
   border-radius: 10px;
 }
 
-/* 6. TAGS */
+/* 9. TAGS */
 .project-tags {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
-  flex-shrink: 0;
+  pointer-events: auto;
 }
-
 .project-tags span {
   font-size: 0.7rem;
   padding: 3px 8px;
   background: rgba(255, 255, 255, 0.1);
-  color: var(--color-accent, #00ff88);
+  color: #ac0707;
   border-radius: 4px;
 }
