@@ -99,6 +99,7 @@ body {
   grid-auto-columns: min-content;
   width: max-content;
   padding-top: 50px;
+  padding-right: 50px;
 }
 
 /* ==========================================================================
@@ -170,7 +171,6 @@ body {
 }
 
 .project-card:hover .carrusel-slide img {
-  filter: blur(2px);
   transform: scale(1.05);
 }
 
