@@ -39,7 +39,7 @@
 }
 
 .hero-illustration svg {
-  width: 100%;
+  width: 500%;
   max-width: 500px; /* Ajusta según el tamaño de tu dibujo */
   height: auto;
 }
