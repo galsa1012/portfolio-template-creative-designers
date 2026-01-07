@@ -1,4 +1,4 @@
-# Titulo
+# Portfolio template Alonso Gallego Sánchez
 
 Encuentra aquí el proyecto desplegado: [https://galsa1012.github.io/portfolio-template-creative-designers/]
 (https://galsa1012.github.io/portfolio-template-creative-designers/)
@@ -14,4 +14,4 @@ EXPLICAR PROCESO
 -Pagina de grados grid
 -proyecto grid
 -404
--uso ia
+-uso Ia
