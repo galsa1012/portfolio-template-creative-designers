@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. RESET GENERAL
+   1. TU CÓDIGO ORIGINAL (SIN TOCAR ESTILOS)
    ========================================================================== */
 * {
   margin: 0;
@@ -14,12 +14,9 @@ body {
   background-color: #000;
   color: #fff;
   font-family: "Cabin", sans-serif;
-  overflow: hidden; /* El JS controla el scroll */
+  overflow: hidden;
 }
 
-/* ==========================================================================
-   2. MENÚ VERTICAL (FIJO)
-   ========================================================================== */
 .nav-vertical {
   position: fixed;
   left: 0;
@@ -57,7 +54,7 @@ body {
 .nav-links-vertical a:hover {
   color: #ff4d4d;
 }
-/* Contenedor invisible que ocupa toda la nav */
+
 .rebote-container {
   position: absolute;
   top: 0;
@@ -75,13 +72,10 @@ body {
   left: 0;
   width: 100px;
   height: auto;
-  transition: none !important;
   will-change: transform;
-  /* Asegura que gire sobre su propio centro */
   transform-origin: center center;
 }
 
-/* Animación Horizontal (Ancho de 200px menos el tamaño del icono) */
 @keyframes reboteX {
   from {
     left: 0px;
@@ -90,8 +84,6 @@ body {
     left: calc(100% - 40px);
   }
 }
-
-/* Animación Vertical (Altura de 100vh menos el tamaño del icono) */
 @keyframes reboteY {
   from {
     top: 0px;
@@ -101,43 +93,33 @@ body {
   }
 }
 
-/* ==========================================================================
-   3. CONTENEDOR HORIZONTAL (EL MOTOR)
-   ========================================================================== */
 #horizontal-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100vw;
   height: 100vh;
-  padding-left: 200px; /* Ajustado al ancho del nav */
-  overflow-x: hidden; /* El JS mueve el scroll */
+  padding-left: 200px;
+  overflow-x: hidden;
   overflow-y: hidden;
   position: relative;
   z-index: 5;
 }
 
-/* ==========================================================================
-   4. SECCIONES Y GRID DE 2 FILAS
-   ========================================================================== */
 .category-section {
-  flex: 0 0 auto; /* Permite que la sección crezca según sus tarjetas */
+  flex: 0 0 auto;
   min-width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column; /* Alinea el título y luego el grid */
-  justify-content: center; /* ESTO centra las filas verticalmente en la pantalla */
+  flex-direction: column;
+  justify-content: center;
   padding: 0 80px;
 }
 
 .projects-grid {
   display: grid !important;
   gap: 30px;
-
-  /* Ajustamos el alto de las dos filas para que quepan bien */
-  /* Si pones 400px aquí, cada fila medirá eso de alto */
   grid-template-rows: repeat(2, 400px);
-
   grid-auto-flow: column;
   grid-auto-columns: min-content;
   width: max-content;
@@ -145,45 +127,33 @@ body {
   padding-right: 50px;
 }
 
-/* ==========================================================================
-   5. LA TARJETA (Tus estilos originales mantenidos)
-   ========================================================================== */
+/* --- ESTILOS DE TARJETA ORIGINALES --- */
 .project-card {
   position: relative !important;
-  width: 200px; /* Menos ancho para que sea más estilizada */
-  height: 100%; /* Toma el alto de la fila (400px) */
+  width: 200px;
+  height: 100%;
   background: #000;
   border-radius: 8px;
   overflow: hidden !important;
   transition: transform 0.3s ease;
   cursor: pointer;
-
-  /* Si prefieres usar proporciones, usa esto en vez de width: */
-  /* aspect-ratio: 3/4; */
 }
-/* Tarjeta que ocupa dos columnas de ancho pero sigue siendo alta */
+
 .card-large {
   width: 600px;
 }
-
 .card-wide {
   width: 800px;
 }
-/* Tarjeta que ocupa dos columnas de ancho pero sigue siendo alta */
-.card-large {
-  width: 600px;
-}
-
-/* Tarjeta que ocupa las dos filas (arriba y abajo) */
 .card-tall {
   width: 300px;
   grid-row: span 2;
 }
+
 .project-card:hover {
   transform: translateY(-8px);
 }
 
-/* 6. CARRUSEL DENTRO DE TARJETA */
 .carrusel-container {
   position: absolute;
   inset: 0;
@@ -205,7 +175,6 @@ body {
   opacity: 1;
   z-index: 2;
 }
-
 .carrusel-slide img {
   width: 100%;
   height: 100%;
@@ -217,7 +186,6 @@ body {
   transform: scale(1.05);
 }
 
-/* 7. BOTONES CARRUSEL (Sin recuadro) */
 .carrusel-btn {
   position: absolute;
   top: 50%;
@@ -234,7 +202,7 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
-.carrusel-card:hover .carrusel-btn {
+.project-card:hover .carrusel-btn {
   opacity: 1;
   pointer-events: auto;
 }
@@ -249,7 +217,6 @@ body {
   right: 15px;
 }
 
-/* 8. CONTENIDO Y TEXTO CON SCROLL */
 .project-content {
   position: absolute;
   top: 50%;
@@ -287,11 +254,12 @@ body {
   pointer-events: auto;
 }
 
+/* TU BARRA DE SCROLL ROJA */
 .project-description {
   width: 100%;
   height: 80px;
   overflow-y: auto !important;
-  overscroll-behavior: contain; /* Evita mover el wrapper horizontal */
+  overscroll-behavior: contain;
   pointer-events: auto;
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
@@ -299,7 +267,6 @@ body {
   padding-right: 10px;
 }
 
-/* Scrollbar personalizada para el texto */
 .project-description::-webkit-scrollbar {
   width: 4px;
 }
@@ -308,7 +275,6 @@ body {
   border-radius: 10px;
 }
 
-/* 9. TAGS */
 .project-tags {
   display: flex;
   gap: 6px;
@@ -320,4 +286,98 @@ body {
   background: rgba(255, 255, 255, 0.1);
   color: #ac0707;
   border-radius: 4px;
+}
+
+/* ==========================================================================
+   2. EL RESPONSIVE (AÑADIDO AL FINAL)
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  html,
+  body {
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .nav-vertical {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-logo {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+  }
+  .nav-links-vertical {
+    display: flex;
+    gap: 15px;
+  }
+  .nav-links-vertical li {
+    margin-bottom: 0;
+  }
+
+  .svg-rebotando {
+    width: 40px;
+  }
+
+  #horizontal-wrapper {
+    flex-direction: column;
+    padding-left: 0;
+    padding-top: 60px;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+    touch-action: pan-y;
+  }
+
+  .category-section {
+    min-width: 100%;
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .projects-grid {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    grid-template-rows: none;
+    padding-right: 0;
+  }
+
+  /* Mantener el tamaño de tus tarjetas en móvil */
+  .project-card {
+    width: 280px; /* Ancho base en móvil para que no se vea ridículo */
+    height: 400px;
+  }
+  .card-large {
+    width: 600px;
+    max-width: 90vw;
+  }
+  .card-wide {
+    width: 800px;
+    max-width: 90vw;
+  }
+  .card-tall {
+    width: 300px;
+    height: 600px;
+    max-width: 90vw;
+  }
+
+  /* En móvil el contenido es visible siempre porque no hay hover */
+  .project-content,
+  .carrusel-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }

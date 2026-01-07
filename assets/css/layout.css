@@ -1,3 +1,7 @@
+/* modo noche*/
+:root {
+  color-scheme: light dark; /* Esto avisa al navegador que tu web soporta ambos modos */
+}
 /* --------------------------------------------------------------------------
    3. Layout Components
    -------------------------------------------------------------------------- */

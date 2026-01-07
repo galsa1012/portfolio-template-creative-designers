@@ -3,13 +3,15 @@
 @import url("layout.css");
 @import url("base.css");
 
-/* RESET PARA PANTALLA ÚNICA */
+/* 1. RESET PARA PANTALLA ÚNICA (Mobile First) */
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden; /* Evita que aparezca el scroll */
+  height: 100dvh; /* Altura dinámica para evitar recortes en móvil */
+  width: 100%;
+  overflow: hidden; /* Evita scroll */
   background-color: var(--color-bg);
 }
 
@@ -17,28 +19,62 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
 }
 
-/* SECCIÓN SUPERIOR (90% de la pantalla) */
+/* 2. SECCIÓN SUPERIOR (90% de la pantalla) */
 .svg-center-section {
-  flex: 9; /* Toma el 90% del espacio */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  flex: 9;
+  position: relative; /* OBLIGATORIO para el rebote */
+  width: 100%;
+  overflow: hidden;
+  display: block; /* Quitamos flex para que no ancle el objeto móvil */
 }
 
+/* 3. EL OBJETO QUE SE MUEVE (Mobile First) */
+.elemento-rebotador {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px; /* Tamaño optimizado para móviles */
+  z-index: 1;
+  will-change: transform;
+  transition: none !important;
+  cursor: grab;
+  user-select: none;
+  touch-action: none; /* Vital para que el arrastre funcione en táctil */
+  -webkit-user-drag: none;
+}
+
+.elemento-rebotador img {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.elemento-rebotador:active {
+  cursor: grabbing;
+}
+
+/* 4. CONTENIDO FIJO (TEXTO Y BOTÓN) */
 .content-stack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrado manual perfecto */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* Espacio entre imagen, texto y botón */
+  gap: 20px;
   width: 90%;
+  z-index: 10;
+  text-align: center;
+  pointer-events: none; /* No estorba al clickar el SVG */
 }
 
 .svg-grande {
   height: auto;
-  max-height: 50vh; /* Se ajusta para que quepa el texto y el botón debajo */
+  max-height: 40vh; /* Ajustado para que quepa todo en móvil */
   max-width: 80%;
   display: block;
 }
@@ -49,8 +85,9 @@ body {
   margin: 0;
 }
 
-/* BOTÓN VOLVER */
+/* 5. BOTÓN VOLVER */
 .btn-volver {
+  pointer-events: auto; /* Reactivamos clicks */
   display: inline-block;
   padding: 12px 24px;
   border: 1px solid var(--color-text);
@@ -65,41 +102,29 @@ body {
   color: white;
 }
 
-/* FOOTER (10% de la pantalla) */
+/* 6. FOOTER (10% de la pantalla) */
 .footer {
-  flex: 1; /* Toma el 10% restante */
+  flex: 1;
   display: flex;
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0; /* Quitamos padding vertical para no crear scroll */
+  padding: 0;
 }
 
 .footer .container {
   width: 100%;
   display: flex;
-  justify-content: center; /* Centrado simple para el 404 */
+  justify-content: center;
   align-items: center;
 }
-/* EL OBJETO QUE SE MUEVE */
-.elemento-rebotador {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px; /* Ajusta el tamaño aquí */
-  z-index: 1;
-  will-change: transform;
-  transition: none !important;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-  -webkit-user-drag: none;
-}
 
-.elemento-rebotador img {
-  width: 100%;
-  height: auto;
-  pointer-events: none; /* Hace que el click detecte el div, no la imagen */
-}
-.elemento-rebotador:active {
-  cursor: grabbing; /* Mano cerrada al apretar */
+/* 7. MEDIA QUERIES (Ajustes para Desktop) */
+@media (min-width: 1024px) {
+  .elemento-rebotador {
+    width: 200px; /* Tamaño que tenías originalmente para pantallas grandes */
+  }
+
+  .svg-grande {
+    max-height: 50vh; /* Un poco más grande en desktop */
+  }
 }

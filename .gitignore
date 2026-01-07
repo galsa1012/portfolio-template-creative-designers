@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+jspm_packages/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configuración del Editor/IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Archivos del Sistema
+.DS_Store
+Thumbs.db
+
+# Carpeta de compilación (si usas algún empaquetador como Vite o Webpack)
+dist/
+build/
+.cache/
+
+# Variables de entorno (Seguridad: nunca subas contraseñas o APIs)
+.env
+.env.local
