@@ -1,3 +1,5 @@
+Creame un plan de desarrollo para crear unas tarjetas con un carrusel de imagenes en el interior donde puedas pasar de imagenes y al hacer scroll te aparezcan las flechas para pasar de imagenes y el txto con scroll dentro de la tarjeta.
+
 Este es el plan detallado de la arquitectura de tu portafolio. Está dividido en tres pilares: la estructura visual (Grid), el componente interactivo (Carrusel) y la experiencia de usuario (Scroll).
 
 Paso 1: La Estructura del Contenedor (Layout Horizontal)

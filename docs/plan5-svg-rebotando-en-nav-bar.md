@@ -1,3 +1,5 @@
+Creame un plan de desarrrollo para poner un svg reborando en el interior de la nav bar que cambie ligeramente su velocidad al rebotar y su rotación
+
 1. Fase de Estructura (HTML)
    El objetivo es crear un "escenario" donde el SVG pueda moverse sin interferir con los enlaces de navegación.
 

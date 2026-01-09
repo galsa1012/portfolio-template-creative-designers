@@ -1,3 +1,5 @@
+Creame un plan para crear una sección about me dónde a la izquierda haya unos textos alineados a caja y a la derecha unas "tarjetas" con los logotipos en svg de aplicaciones y debajo las barras de progreso con el nombre de cada una.
+
 Aquí tienes el plan detallado de la sección About Me & Skills, centrado en las soluciones que hemos aplicado para que el diseño sea profesional y equilibrado:
 
 📋 Plan de Estructura: Sección "About Me & Skills"

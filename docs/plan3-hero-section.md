@@ -1,3 +1,5 @@
+En el hero section creame un grid de dos columnas para a un lado poner una imagen y al otro unos textos
+
 Explicación Técnica del Hero
 
 1. El Contenedor de doble columna (CSS Flexbox)

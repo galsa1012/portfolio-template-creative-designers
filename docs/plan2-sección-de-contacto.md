@@ -1,3 +1,5 @@
+creame un plan para poner los logotipos de estas apps, ara que al hacer scroll aparezcan los nombres y cambie el color
+
 - Plan de Implementación: Sección de Contacto Interactiva
   Este apartado detalla el proceso de creación de la sección de contacto, priorizando la ligereza técnica, la escalabilidad visual y la experiencia de usuario (UX).
 
